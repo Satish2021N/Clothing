@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+{% load static %}
+<!DOCTYPE html>
+   <head>
+      <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+   </head>
+   {% block content %}
+   <section>
+      <section class="py-5">
+         <div class="container px-4 px-lg-5 mt-5">
+            <h1> {{category_name.name}}</h1>
+             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                
+                {% for item in products %}
+                 <div class="col mb-5">
+                     <div class="card h-100">
+                       
+                        <a href="{% url 'productview' item.category.slug item.slug  %}">
+                           
+                         <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                         <img class="card-img-top" src="{{item.product_image.url}}" alt="..." />
+                   
+                         <div class="card-body p-4">
+                             <div class="text-center">
+                             
+                                 <h5 class="fw-bolder">{{item.name}}</h5>
+                              
+                                 <div class="d-flex justify-content-center small text-warning mb-2">
+                                     <div class="bi-star-fill"></div>
+                                     <div class="bi-star-fill"></div>
+                                     <div class="bi-star-fill"></div>
+                                     <div class="bi-star-fill"></div>
+                                     <div class="bi-star-fill"></div>
+                                 </div>
+                                 <!-- Product price-->
+                                  <span class="text-muted text-decoration-line-through">{{item.original_price}}</span>
+                                 {{item.selling_price}}
+                             </div>
+                            </a>
+                         </div> 
+                         <!-- Product actions-->
+                        
+    
+                     </div>
+                 </div>
+                 {% endfor %}
+             </div>
+         </div>
+     </section>
+   </section>
+   {% endblock content%}
+
